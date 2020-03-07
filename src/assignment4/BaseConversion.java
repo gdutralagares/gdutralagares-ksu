@@ -1,13 +1,14 @@
 package assignment4;
 
 import java.util.Scanner;
+import javax.swing.*;
 
 /*
 Class: CSE 1322L
-Section: XX, replace with the actual section number.
+Section: 04
 Term: Spring 2020
 Instructor: Kevin Markley
-Name: My Name
+Name: Gabriel Dutra Lagares
 Assignment 4
 */
 
@@ -15,8 +16,10 @@ public class BaseConversion
 {
     public static void main(String[] args)
     {
-        //After completing the method below, call that method here with either user input or hardcoded values as the arguments and print out the result.
-        //DO NOT print or get user input in the below method.
+        System.out.println("753 in decimais is "+ RecursiveBaseConversion(753,8)+" in base 8");
+        System.out.println("753 in decimais is "+RecursiveBaseConversion(753,16)+" in base 16" );
+        System.out.println("9098 in decimais is "+RecursiveBaseConversion(9098,20)+" in base 20");
+        System.out.println("692 in decimais is "+RecursiveBaseConversion(692,2)+" in base 2");
     	
     }
 
@@ -31,6 +34,21 @@ public class BaseConversion
      */
     public static String RecursiveBaseConversion(int numberToConvert, int numberSystemToConvertTo)
     {
+            //If given number is less than base, return the number
+            if(numberToConvert<numberSystemToConvertTo){
+                return String.valueOf(numberToConvert);
+            }
+            //Find remainder
+            int rem = numberToConvert%numberSystemToConvertTo;
+            //Convert to string
+            String s = String.valueOf(rem);
+            //If remainder is greater than 9,
+            if(rem>9){
+                //Convert to char
+                s = String.valueOf((char)('A'+(rem-10)));
+            }
+            //Recursively call convert function again
+            return RecursiveBaseConversion(numberToConvert/numberSystemToConvertTo,numberSystemToConvertTo)+s;
+        }
     	
-    }
 }
